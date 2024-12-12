@@ -1,30 +1,50 @@
 ---
+import HtmlIcon from "../assets/icons/html.svg";
+import JavaScriptIcon from "../assets/icons/javascript.svg";
+import AstroIcon from "../assets/icons/astro.svg";
+import NodeJsIcon from "../assets/icons/nodejs.svg";
+import UiUxDesignIcon from "../assets/icons/ui_ux_design.svg";
+import Tailwind from "../assets/icons/Tailwind.svg";
+import { Image } from 'astro:assets';
+
 const skills = [
-  { name: 'HTML/CSS', level: 80 },
-  { name: 'JavaScript', level: 75 },
-  { name: 'Astro', level: 60 },
-  { name: 'Node.js', level: 30 },
-  { name: 'UI/UX Design', level: 85 },
-  { name: 'Responsive Design', level: 90 },
+  { name: 'HTML', level: 80, color: '#e34c26', icon: HtmlIcon },
+  { name: 'JavaScript', level: 75, color: '#f7df1e', icon: JavaScriptIcon },
+  { name: 'Astro', level: 60, color: '#ff5a1f', icon: AstroIcon },
+  { name: 'Node.js', level: 30, color: '#68a063', icon: NodeJsIcon },
+  { name: 'Tailwind', level: 40, color: '#00bcd4', icon: Tailwind },
 ];
 ---
 
 <section id="skills" class="py-20 bg-gray-50">
-  <div class="container mx-auto px-6">
+  <div class="container flex flex-col content-center mx-auto px-6">
     <h2 class="text-4xl font-display font-bold text-secondary mb-12 text-center" data-aos="fade-up">
       Skills & Expertise
     </h2>
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-3xl mx-auto grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
       {skills.map((skill) => (
-        <div class="mb-6" data-aos="fade-up">
-          <div class="flex justify-between mb-2">
-            <span class="font-display font-bold">{skill.name}</span>
-            <span class="text-gray-600">{skill.level}%</span>
+        <div class="flex flex-col items-center justify-between p-4 bg-white rounded-lg shadow-sm" 
+             data-aos="fade-up" 
+             data-aos-duration="800"
+             style="width: 180px; height: 200px;">
+          <div class="text-center mb-1">
+            <span class="font-display font-bold text-lg">{skill.name}</span>
           </div>
-          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+          
+          <div class="my-2">
+            <Image 
+              src={skill.icon} 
+              alt={skill.name} 
+              width={50} 
+              height={50}
+              class="mx-auto"
+            />
+          </div>
+          
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden mt-1">
             <div
-              class="h-full bg-primary rounded-full transition-all duration-1000"
-              style={`width: ${skill.level}%`}
+              class="h-full rounded-full transition-all duration-1000"
+              style={`width: ${skill.level}%; background-color: ${skill.color};`}
             />
           </div>
         </div>
